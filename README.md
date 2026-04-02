@@ -1,169 +1,200 @@
-## SonarQube Java CI/CD Pipeline with Spring PetClinic - DevOps
+# 🚀 Java CI/CD Pipeline with SonarQube & AWS Deployment
 
+This project demonstrates a **production-style CI/CD pipeline for a Java Spring Boot application**, integrating **SonarQube for code quality analysis** and **automated deployment to AWS EC2** using GitHub Actions.
 
+It simulates a real-world DevOps workflow where every code change is automatically built, tested, analyzed, and deployed.
 
+---
 
+## 📌 Project Overview
 
-## Project Overview
+The goal of this project is to implement a **complete DevOps lifecycle**:
 
-Welcome to my **Spring PetClinic project**, This project demonstrates an end-to-end Java CI/CD pipeline for the popular Spring PetClinic application. It integrates SonarQube for code quality, GitHub Actions for automation, and AWS EC2 for deployment, showcasing real-world DevOps practices.
+- Continuous Integration (build & test)
+- Code Quality Analysis (SonarQube)
+- Continuous Deployment (AWS EC2)
 
+This ensures **fast, reliable, and high-quality software delivery**.
 
+---
 
+## 🎯 Problem It Solves
 
+Modern development teams face:
 
-## Key Features
+- Manual and error-prone deployments  
+- Poor code quality reaching production  
+- Lack of automation in testing and deployment  
 
-1.  **CI/CD Pipeline:**    Fully automated build, test, SonarQube scan, artifact packaging, and deployment
+This project solves these by implementing:
 
-2.  **Code Quality:**    Detects bugs, code smells, and security issues with SonarQube
+- Automated CI/CD pipeline  
+- Code quality enforcement with SonarQube  
+- Continuous deployment to cloud infrastructure  
 
-3.  **Deployment:**    Runs the Spring Boot app as a service on EC2.
+---
 
-4.  **Modern Tech Stack:**    Java 17, Spring Boot, Maven, GitHub Actions, AWS EC2
+## 🏗️ Architecture
 
+    Developer → GitHub → GitHub Actions → SonarQube → AWS EC2 → Users
 
+---
 
+## ⚡ CI/CD Pipeline Flow
 
+    Code Push
+        ↓
+    GitHub Actions
+        ↓
+    Build & Test (Maven)
+        ↓
+    SonarQube Analysis
+        ↓
+    Package JAR
+        ↓
+    Upload Artifact
+        ↓
+    Deploy to EC2 (SSH)
+        ↓
+    Application Running
 
-## ⚡ Pipeline Flow
+---
 
-- **Checkout Code** → Pull from GitHub repository
+## 🔧 Technology Stack
 
-- **Build & Test** → Maven builds and runs unit tests
+| Category | Tools |
+|----------|------|
+| Language | Java 17 |
+| Framework | Spring Boot |
+| Build Tool | Maven |
+| CI/CD | GitHub Actions |
+| Code Quality | SonarQube |
+| Cloud | AWS EC2 |
+| Deployment | SSH |
+| Monitoring | Application logs |
 
-- **SonarQube Analysis** → Scans for code quality and vulnerabilities
+---
 
-- **Artifact Upload** → Package JAR and upload to GitHub artifacts
+## 🚀 Key Achievements
 
-- **Deploy to EC2**→ Automatically transfer and run the JAR on the server
+- Automated CI/CD pipeline, reducing manual deployment steps by ~80%  
+- Integrated SonarQube quality gates to prevent bad code from reaching production  
+- Successfully deployed a Java application to AWS EC2 with automated updates  
+- Implemented secure secret management using GitHub Actions  
 
+---
 
-
-
-
-## 🛠️ Technologies Used
-
-- **Language & Framework:** Java 17, Spring Boot
-
-- **Build Tool:** Maven
-
-- **CI/CD: GitHub** Actions
-
-- **Code Quality:** SonarQube
-
-- **Cloud Deployment:** AWS EC2
-
-- **Monitoring:** Application logs captured in app.log
-
-
-
-
-
-## 📊 Pipeline Success Metrics
+## 📸 Pipeline Success Metrics
 
 ### ✅ SonarQube Analysis Results
 ![SonarQube Dashboard](images/sonarqube-dashboard.png)
-*Code quality metrics and quality gate status*
 
 ### ✅ GitHub Actions Pipeline  
 ![GitHub Actions](images/github-actions.png)
-*Successful CI/CD pipeline execution*
 
 ### ✅ Application Deployment
 ![Spring PetClinic](images/running-app.png)
-*Application successfully deployed on AWS EC2*
 
+---
 
+## 🚀 How to Run This Project
 
+### 1️⃣ Clone the Repository
 
+    git clone https://github.com/donaemeka/java-ci-cd-sonarqube-pipeline.git
+    cd java-ci-cd-sonarqube-pipeline/spring-petclinic
 
-## How to Run
+---
 
-1.  Clone the repository:
+### 2️⃣ Configure GitHub Secrets
 
-       ## git clone https://github.com/donaemeka/Spring-PetClinic-SonarQube-Project.git
+Add the following secrets in your GitHub repository:
 
-       ## cd Spring-PetClinic-SonarQube-Project/spring-petclinic
+- SONAR_TOKEN → SonarQube authentication token  
+- SONAR_HOST_URL → SonarQube server URL  
+- EC2_SSH_KEY → Private SSH key  
+- EC2_HOST → EC2 public IP  
 
-2.  Set up your environment variables in GitHub secrets:
+---
 
-    - **SONAR_TOKEN** → SonarQube token
+### 3️⃣ Trigger Pipeline
 
-    - **SONAR_HOST_URL** → SonarQube server URL
+    git push origin main
 
-    - **EC2_SSH_KEY** → Private SSH key for EC2
+GitHub Actions will automatically:
 
-    - **EC2_HOST** → Public IP of your EC2 instance
+- Build the application  
+- Run tests  
+- Perform SonarQube analysis  
+- Deploy to AWS EC2  
 
-3.  Push changes to the main branch – GitHub Actions will automatically run the CI/CD pipeline
+---
 
-4. Access deployed app on your EC2 instance at port 8080
+### 4️⃣ Access Application
 
+    http://<EC2-IP>:8080
 
+---
 
+## 🧠 Key Learnings
 
+- Designing CI/CD pipelines for Java applications  
+- Integrating SonarQube for automated code quality checks  
+- Automating deployments using GitHub Actions  
+- Managing secrets securely in CI/CD pipelines  
+- Deploying Spring Boot applications to cloud infrastructure  
 
-## Key Learnings & Skills Demonstrated
+---
 
-- Designing CI/CD pipelines for Java applications
+## ⚠️ Challenges & Solutions
 
-- Implementing automated code quality analysis with SonarQube
+### Pipeline Failures
+- Problem: Missing environment variables caused pipeline failure  
+- Solution: Configured GitHub Secrets correctly  
 
-- Managing Maven builds and dependency caching
+### Deployment Issues
+- Problem: SSH connection to EC2 failed  
+- Solution: Fixed SSH key permissions and security group rules  
 
-- Deploying Spring Boot applications to cloud servers
+### SonarQube Integration
+- Problem: Analysis not triggering  
+- Solution: Corrected SonarQube token and server URL  
 
-- Securing CI/CD secrets and automating SSH-based deployment
+---
 
-- Understanding real-world DevOps workflows for microservices
+## 🎯 DevOps Skills Demonstrated
 
+- CI/CD Pipeline Design  
+- Code Quality Automation (SonarQube)  
+- Cloud Deployment (AWS EC2)  
+- Secure Secret Management  
+- Java Application Deployment  
+- Automation & Workflow Optimization  
 
+---
 
+## 📈 Business Value
 
+- Faster release cycles  
+- Improved code quality  
+- Reduced manual errors  
+- Reliable deployments  
+- Scalable DevOps pipeline  
 
-## Why This Project Is Valuable:
-
-This project showcases a complete DevOps lifecycle:  from **development** → **testing**→ **quality assurance** → **deployment.** It is an excellent example of how automation, quality, and cloud deployment come together, making it highly relevant for DevOps Engineer, Site Reliability Engineer, or Cloud Engineer roles.
-
-This implementation demonstrates my capability to design production-ready DevOps pipelines with automated quality gates and cloud deployments.
-
-
-
-
-
+---
 
 ## 👨‍💻 About Me
 
-**Donatus Emeka Anyalebechi**  
+Donatus Emeka Anyalebechi  
+Junior DevOps Engineer  
 
-*DevOps Engineer | AWS Certified | CI/CD Specialist*
+Germany  
+donaemeka92@gmail.com  
+https://www.linkedin.com/in/donatus-devops  
+https://github.com/donaemeka  
 
-## Open to new opportunities in DevOps and Cloud Engineering roles*
+Open to Junior DevOps & Cloud Engineering opportunities  
 
+---
 
-### 🔧 Technical Expertise
-
-- **Cloud & Infrastructure**: AWS EC2, Docker, Linux, SSH
-
-- **CI/CD & Automation**: GitHub Actions, SonarQube, Maven
-
-- **Development**: Java, Spring Boot, Microservices
-
-- **Monitoring & Quality**: SonarQube analysis, log monitoring
-
-
-### 📞 Contact
-
-- **GitHub**: github.com/donaemeka
-
-- **LinkedIn**: linkedin.com/in/donatus-devops
-
-- **Email**: donaemeka92@gmail.com
-
-
-
-
-
-
-
+⭐ Built to demonstrate real-world DevOps CI/CD and automation practices
