@@ -36,6 +36,9 @@ This project solves these by implementing:
 
 ## 🏗️ Architecture
 
+
+![Architecture](images/architecture.png)
+
     Developer → GitHub → GitHub Actions → SonarQube → AWS EC2 → Users
 
 ---
